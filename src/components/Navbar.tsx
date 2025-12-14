@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
-  { name: 'Home', href: '#home' },
+  { name: 'Home', href: '#' },
   { name: 'About', href: '#about' },
   { name: 'Services', href: '#services' },
   { name: 'Portfolio', href: '#portfolio' },
@@ -24,15 +24,21 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-500 ${
-        scrolled ? 'bg-stone-950/80 backdrop-blur-md border-b border-stone-800 py-4' : 'bg-transparent py-8'
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled 
+          // FIX: Removed 'border-b border-white/10'
+          // Added 'shadow-xl' for a clean separation without the line
+          ? 'bg-[#0a0a0a] shadow-xl py-4' 
+          : 'bg-transparent py-8'
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="relative group">
-          <span className="font-serif text-3xl font-bold text-white tracking-wider">ARCH(DEMO)</span>
-          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold-500 transition-all duration-300 group-hover:w-full"></span>
+          <span className="font-serif text-2xl md:text-3xl font-bold text-white tracking-widest">
+            ARCH<span className="text-teal-400">.</span>
+          </span>
+          <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-gradient-to-r from-teal-400 via-indigo-400 to-rose-400 transition-all duration-300 group-hover:w-full"></span>
         </Link>
 
         {/* Desktop Menu */}
@@ -41,7 +47,7 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-xs uppercase tracking-[0.2em] text-stone-300 hover:text-gold-500 transition-colors duration-300"
+              className="text-xs uppercase tracking-[0.2em] text-white/70 hover:text-teal-300 transition-colors duration-300 font-medium"
             >
               {link.name}
             </Link>
@@ -50,7 +56,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X /> : <Menu />}
+          {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
         </button>
       </div>
 
@@ -61,14 +67,14 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full bg-stone-900 border-b border-stone-800 md:hidden flex flex-col items-center py-10 space-y-8"
+            className="absolute top-full left-0 w-full bg-[#0a0a0a] md:hidden flex flex-col items-center py-10 space-y-8 shadow-2xl"
           >
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-lg font-serif text-white hover:text-gold-500 transition-colors"
+                className="text-lg font-serif text-white hover:text-teal-400 transition-colors"
               >
                 {link.name}
               </Link>

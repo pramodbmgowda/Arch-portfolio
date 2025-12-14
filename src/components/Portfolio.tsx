@@ -22,12 +22,16 @@ export default function Portfolio() {
     : projects.filter(p => p.category === filter);
 
   return (
-    <section id="portfolio" className="py-32 bg-stone-950">
+    <section id="portfolio" className="py-32 bg-[#0a0a0a]">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16">
           <div>
-            <h4 className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Selected Works</h4>
-            <h2 className="font-serif text-4xl md:text-5xl text-white">Featured Projects</h2>
+            <h4 className="text-teal-500 text-xs tracking-[0.3em] uppercase mb-4">
+              Selected Works
+            </h4>
+            <h2 className="font-serif text-4xl md:text-5xl text-white">
+              Featured Projects
+            </h2>
           </div>
           
           <div className="flex gap-6 mt-8 md:mt-0 overflow-x-auto pb-2">
@@ -35,11 +39,17 @@ export default function Portfolio() {
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`text-xs uppercase tracking-widest transition-all duration-300 ${
-                  filter === cat ? 'text-white border-b border-gold-500 pb-1' : 'text-stone-600 hover:text-stone-400'
-                }`}
+                className="relative group pb-1 text-xs uppercase tracking-widest transition-all duration-300"
               >
-                {cat}
+                <span className={`relative z-10 ${filter === cat ? 'text-white' : 'text-gray-500 hover:text-gray-300'}`}>
+                  {cat}
+                </span>
+                {filter === cat && (
+                  <motion.div 
+                    layoutId="underline"
+                    className="absolute bottom-0 left-0 w-full h-[1px] bg-teal-500"
+                  />
+                )}
               </button>
             ))}
           </div>
@@ -55,18 +65,22 @@ export default function Portfolio() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
-                className="group relative overflow-hidden aspect-[4/3] cursor-pointer"
+                className="group relative overflow-hidden aspect-[4/3] cursor-pointer bg-[#111]"
               >
                 <Image 
                   src={project.img} 
                   alt={project.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
                 />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
-                  <span className="text-gold-500 text-xs uppercase tracking-widest mb-2">{project.category}</span>
-                  <h3 className="text-white font-serif text-2xl">{project.title}</h3>
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                  <span className="text-teal-400 text-xs uppercase tracking-widest mb-2 font-bold">
+                    {project.category}
+                  </span>
+                  <h3 className="text-white font-serif text-2xl">
+                    {project.title}
+                  </h3>
                 </div>
               </motion.div>
             ))}

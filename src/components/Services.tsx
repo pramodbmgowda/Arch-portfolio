@@ -27,14 +27,18 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-32 bg-stone-900 text-white">
-      <div className="container mx-auto px-6">
+    <section id="services" className="py-32 bg-[#0a0a0a] text-white relative">
+      <div className="container mx-auto px-6 relative z-10">
         <div className="mb-20">
-            <h4 className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">What We Do</h4>
-            <h2 className="font-serif text-4xl md:text-5xl">Our Expertise</h2>
+            <h4 className="text-teal-500 text-xs tracking-[0.3em] uppercase mb-4">
+              What We Do
+            </h4>
+            <h2 className="font-serif text-4xl md:text-5xl text-white">
+              Our Expertise
+            </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-l border-stone-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-l border-white/10">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -42,13 +46,15 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group relative p-10 border-r border-b border-stone-800 hover:bg-stone-950 transition-colors duration-500"
+              className="group relative p-10 border-r border-b border-white/10 hover:bg-white/5 transition-colors duration-300"
             >
-              <div className="text-stone-400 mb-8 group-hover:text-gold-500 transition-colors duration-300">
+              <div className="text-gray-400 mb-8 group-hover:text-teal-400 transition-colors duration-300">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-serif mb-4">{service.title}</h3>
-              <p className="text-stone-500 text-sm leading-relaxed group-hover:text-stone-400 transition-colors">
+              <h3 className="text-xl font-serif mb-4 text-white">
+                {service.title}
+              </h3>
+              <p className="text-gray-500 text-sm leading-relaxed group-hover:text-gray-300">
                 {service.desc}
               </p>
             </motion.div>
@@ -57,4 +63,4 @@ export default function Services() {
       </div>
     </section>
   );
-} 
+}
