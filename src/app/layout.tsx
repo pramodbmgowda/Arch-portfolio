@@ -2,20 +2,24 @@ import type { Metadata, Viewport } from 'next';
 import { Manrope, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
-import SmoothScroll from '@/components/SmoothScroll'; // Import the new component
+import SmoothScroll from '@/components/SmoothScroll';
 
-// FONTS
 const manrope = Manrope({ subsets: ['latin'], variable: '--font-manrope' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 
 export const metadata: Metadata = {
-  title: 'ARCH | Premium Architecture',
-  description: 'Luxury Architecture & Interior Design Portfolio',
+  title: 'Destination Design',
+  description: 'Global Architecture & Design',
+
+  icons: {
+    icon: '/logo.svg', 
+  },
 };
 
-// This fixes the white line on Mobile/Mac overscroll
+// CRITICAL: Sets the browser window color to black
 export const viewport: Viewport = {
   themeColor: '#0a0a0a',
+  colorScheme: 'dark',
 };
 
 export default function RootLayout({
@@ -24,13 +28,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-[#0a0a0a]">
       <body className={`${manrope.variable} ${playfair.variable} font-sans bg-[#0a0a0a] text-[#ededed]`}>
-        <SmoothScroll /> {/* Logic runs here */}
+        <SmoothScroll />
         <Navbar />
-        <main>{children}</main>
-        <footer className="py-12 border-t border-white/10 text-center text-gray-500 text-sm uppercase tracking-widest bg-[#0a0a0a]">
-          © 2025 Arch Studio.
+        <main className="relative z-10 bg-[#0a0a0a]">
+          {children}
+        </main>
+        <footer className="py-12 border-t border-white/5 text-center text-gray-600 text-xs uppercase tracking-widest bg-[#0a0a0a] relative z-10">
+          © 2025 Destination Design.
         </footer>
       </body>
     </html>

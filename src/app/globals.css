@@ -7,20 +7,29 @@
   --foreground: #ededed;
 }
 
+/* STOP THE BOUNCE */
 html {
-  scroll-behavior: smooth;
-  background-color: #0a0a0a; /* Fixes white line on overscroll */
+  background-color: #0a0a0a;
+  overscroll-behavior: none; /* Critical for white line */
+  height: 100%;
 }
 
 body {
-  background: var(--background);
+  background-color: #0a0a0a;
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  min-height: 100%;
 }
 
+/* GPU OPTIMIZATION FOR IMAGES */
+img {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* SCROLLBAR */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
   background: #0a0a0a;
 }
 ::-webkit-scrollbar-thumb {

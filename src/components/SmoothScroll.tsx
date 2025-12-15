@@ -5,16 +5,32 @@ import Lenis from 'lenis';
 export default function SmoothScroll() {
   useEffect(() => {
     const lenis = new Lenis({
+      lerp: 0.1, // Smooth, responsive feel
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
     });
+    
+    // MEMORY LEAK FIX:
+    // We must save the "ID" of the animation frame so we can cancel it later.
+    let animationFrameId: number;
     
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      animationFrameId = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    
+    animationFrameId = requestAnimationFrame(raf);
+
+    // CLEANUP FUNCTION:
+    // This runs when you leave the page. It kills the loop instantly.
+    return () => {
+      cancelAnimationFrame(animationFrameId); // <--- STOPS THE LAG
+      lenis.destroy();
+    };
   }, []);
 
-  return null; // This component renders nothing, just runs the scroll logic
+  return null;
 }
