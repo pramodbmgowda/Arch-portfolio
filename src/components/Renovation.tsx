@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { ArrowRight, RefreshCcw } from 'lucide-react';
 
-// DATA: Renovation Services (Updated based on your Green Design specialization)
+// DATA: Renovation Services
 const services = [
   {
     title: "Green Renovation",
@@ -35,10 +35,12 @@ export default function Renovation() {
 
       <div className="container mx-auto px-6">
         
-        {/* HEADER */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+        {/* HEADER - FIXED ALIGNMENT */}
+        {/* FIX 1: Changed 'items-end' to 'items-start md:items-end' */}
+        {/* This keeps it left-aligned on mobile, but bottom-aligned on desktop */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
+          
           <div className="max-w-2xl">
-            {/* UPDATED TITLE: Matches your Eco-Friendly Brand */}
             <h4 className="text-teal-400 text-xs tracking-[0.3em] uppercase mb-4 font-bold">
               Sustainable Revitalization
             </h4>
@@ -49,7 +51,9 @@ export default function Renovation() {
               </span>
             </h2>
           </div>
-          <p className="text-gray-400 max-w-md text-sm leading-relaxed text-right md:text-left">
+
+          {/* FIX 2: Removed 'text-right' to ensure text stays left-aligned on mobile */}
+          <p className="text-gray-400 max-w-md text-sm leading-relaxed text-left">
             We don't just renovate; we practice responsible architecture. By reusing materials from the original structure, we preserve the soul of the home while delivering a modern, eco-friendly living space.
           </p>
         </div>
