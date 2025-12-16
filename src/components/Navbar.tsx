@@ -55,7 +55,7 @@ export default function Navbar() {
                 DESTINATION
               </span>
               <span className="font-sans text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase leading-none bg-gradient-to-r from-teal-200 via-teal-400 to-cyan-500 text-transparent bg-clip-text group-hover:brightness-125 transition-all duration-300">
-                DESIGN
+                DESIGNS
               </span>
             </div>
         </Link>

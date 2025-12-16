@@ -7,27 +7,46 @@
   --foreground: #ededed;
 }
 
-/* STOP THE BOUNCE */
+/* 1. FORCE ROOT BLACK (The First Line of Defense) */
 html {
-  background-color: #0a0a0a;
-  overscroll-behavior: none; /* Critical for white line */
+  background-color: #0a0a0a !important;
+  overscroll-behavior: none !important; /* Stops the bounce physics */
   height: 100%;
 }
 
+/* 2. BODY SETUP */
 body {
-  background-color: #0a0a0a;
+  background-color: #0a0a0a !important;
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
-  min-height: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* GPU OPTIMIZATION FOR IMAGES */
-img {
+/* 3. THE INFINITE CURTAIN (The Nuclear Fix) */
+/* This paints a giant black sheet behind the browser window */
+body::before {
+  content: "";
+  position: fixed;
+  top: -500vh;
+  bottom: -500vh;
+  left: 0;
+  right: 0;
+  background: #0a0a0a;
+  z-index: -9999;
+  pointer-events: none;
+}
+
+/* 4. GPU ACCELERATION (Lag Killer) */
+/* Promotes heavy elements to their own layer */
+.group, section, img, nav {
   will-change: transform;
   transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
-/* SCROLLBAR */
+/* 5. INDUSTRIAL SCROLLBAR */
 ::-webkit-scrollbar {
   width: 6px;
   background: #0a0a0a;

@@ -8,7 +8,7 @@ const manrope = Manrope({ subsets: ['latin'], variable: '--font-manrope' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 
 export const metadata: Metadata = {
-  title: 'Destination Design',
+  title: 'Destination Designs',
   description: 'Global Architecture & Design',
 
   icons: {
@@ -36,7 +36,7 @@ export default function RootLayout({
           {children}
         </main>
         <footer className="py-12 border-t border-white/5 text-center text-gray-600 text-xs uppercase tracking-widest bg-[#0a0a0a] relative z-10">
-          © 2025 Destination Design.
+          © 2025 Destination Designs.
         </footer>
       </body>
     </html>

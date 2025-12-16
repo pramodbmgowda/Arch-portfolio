@@ -1,5 +1,5 @@
 'use client';
-import { Instagram, Linkedin, Facebook } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -8,13 +8,13 @@ export default function Footer() {
         
         {/* Branding & Copyright */}
         <div className="text-center md:text-left">
-          <h5 className="text-white font-bold mb-2">Destination Design</h5>
+          <h5 className="text-white font-bold mb-2">Destination Designs</h5>
           <p className="hover:text-gray-400 transition-colors duration-300 cursor-default">
             &copy; {new Date().getFullYear()} All rights reserved.
           </p>
         </div>
 
-        {/* Social Links */}
+        {/* Social Links - ONLY INSTAGRAM */}
         <div className="flex items-center space-x-8 font-bold">
           <a 
             href="https://www.instagram.com/destinationdesignsindia?igsh=Y3I4Y3lwZnR4bWNv" 
@@ -24,14 +24,6 @@ export default function Footer() {
           >
             <Instagram className="w-4 h-4" />
             <span>Instagram</span>
-          </a>
-          
-          <a href="#" className="hover:text-teal-400 transition-colors duration-300">
-            LinkedIn
-          </a>
-          
-          <a href="#" className="hover:text-teal-400 transition-colors duration-300">
-            Facebook
           </a>
         </div>
       </div>
